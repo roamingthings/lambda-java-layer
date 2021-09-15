@@ -3,14 +3,42 @@ AWS Lambda layer to enable Java 17 support
 
 ## Usage
 
+### with CDK
+
+- Download [java17layer.zip](https://github.com/msailes/lambda-java17-layer/releases/download/v0.0.1-alpha/java17layer.zip)
+- Create a Lambda layer using Code.fromAsset `java17layer.zip`
+- Note you might need to adjust the path for your own project structure
+
+```java 
+LayerVersion java17layer = new LayerVersion(this, "Java17Layer", LayerVersionProps.builder()
+        .layerVersionName("Java17Layer")
+        .description("Java 17")
+        .compatibleRuntimes(Arrays.asList(Runtime.PROVIDED_AL2))
+        .code(Code.fromAsset("java17layer.zip"))
+        .build());
+```
+
 - Create a function using the PROVIDED_AL2 runtime.
 - Add this layer to your function.
+
+```java
+Function exampleWithLayer = new Function(this, "ExampleWithLayer", FunctionProps.builder()
+        .functionName("example-with-layer")
+        .description("example-with-layer")
+        .handler("example.HelloWorld::handleRequest")
+        .runtime(Runtime.PROVIDED_AL2)
+        .code(Code.fromAsset("../software/ExampleFunction/target/example.jar"))
+        .memorySize(512)
+        .logRetention(RetentionDays.ONE_WEEK)
+        .layers(singletonList(java17layer))
+        .build());
+```
 
 ## Java 17 
 
 A custom JRE is created to reduce final file size. Lambda has a 250MB unzipped file size limit.
 
-[Dockerfile](Dockerfile) describes how the JRE is built
+[Dockerfile](Dockerfile) describes how the JRE is built.
 
 ## JVM Settings
 
