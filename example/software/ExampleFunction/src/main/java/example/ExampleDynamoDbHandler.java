@@ -49,7 +49,10 @@ public class ExampleDynamoDbHandler implements RequestHandler<APIGatewayProxyReq
                     .tableName(TABLE_NAME)
                     .item(itemAttributes)
                     .build());
-            return response.withBody("successful").withStatusCode(200);
+            return response.withBody("""
+                    successful
+                    multi-line
+                    response""").withStatusCode(200);
         } catch (DynamoDbException e) {
             context.getLogger().log(e.getMessage());
             return response.withBody("error").withStatusCode(500);
