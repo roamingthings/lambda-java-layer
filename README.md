@@ -34,13 +34,15 @@ Function exampleWithLayer = new Function(this, "ExampleWithLayer", FunctionProps
         .build());
 ```
 
-## Java 17 
+## Layer Details
+
+### Java 17 
 
 A custom JRE is created to reduce final file size. Lambda has a 250MB unzipped file size limit.
 
 [Dockerfile](Dockerfile) describes how the JRE is built.
 
-## JVM Settings
+### JVM Settings
 
 The following JVM settings are added by default.
 
@@ -52,7 +54,7 @@ The following JVM settings are added by default.
 
 Further suggestions welcomed
 
-## Java Class Path
+### Java Class Path
 
 ```
 aws-lambda-java-runtime-interface-client-1.1.0.jar
@@ -62,3 +64,15 @@ $LAMBDA_TASK_ROOT
 $LAMBDA_TASK_ROOT/*
 $LAMBDA_TASK_ROOT/lib/*
 ```
+
+## Build the layer zip yourself
+
+### Requirements
+
+- Docker
+
+### Steps
+
+- Run `build-jre.sh` to build the minimal Java 17 runtime
+- Run `make-layer.sh` to package the runtime, dependencies and bootstrap as a zip
+
