@@ -1,5 +1,5 @@
-# lambda-java17-layer
-AWS Lambda layer to enable Java 17 support
+# AWS Lambda Java 17 Custom Runtime
+An AWS Lambda layer to enable Java 17 support
 
 ## Usage
 
