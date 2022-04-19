@@ -24,6 +24,7 @@ hs_err_pid*
 /jdk-17/
 /.idea/
 /example/software/ExampleFunction/target/
+/layer/
 
 *.iml
 /jre17-slim/
