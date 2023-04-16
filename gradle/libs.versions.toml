@@ -1,0 +1,41 @@
+[versions]
+assertj = "3.24.2"
+awsCdk = "2.72.1"
+awsConstructs = "10.1.299"
+awsLambdaCore = "1.2.2"
+awsLambdaEvents = "3.11.1"
+awsLambdaTests = "1.1.1"
+jackson = "2.14.2"
+jsonAssert = "1.5.1"
+jsonUnitAssertj = "2.37.0"
+lombok = "1.18.26"
+mockito = "5.2.0"
+snapshotTesting = "4.0.5"
+
+[libraries]
+assertj-core = { module = "org.assertj:assertj-core", version.ref = "assertj" }
+assertj-jsonUnit = { module = "net.javacrumbs.json-unit:json-unit-assertj", version.ref = "jsonUnitAssertj" }
+aws-cdk-core = { module = "software.amazon.awscdk:aws-cdk-lib", version.ref = "awsCdk" }
+aws-cdk-constructs = { module = "software.constructs:constructs", version.ref = "awsConstructs" }
+aws-lambda-core = { module = "com.amazonaws:aws-lambda-java-core", version.ref = "awsLambdaCore" }
+aws-lambda-events = { module = "com.amazonaws:aws-lambda-java-events", version.ref = "awsLambdaEvents" }
+aws-lambda-tests = { module = "com.amazonaws:aws-lambda-java-tests", version.ref = "awsLambdaTests" }
+mockito-core = { module = "org.mockito:mockito-core", version.ref = "mockito" }
+mockito-junit-jupiter = { module = "org.mockito:mockito-junit-jupiter", version.ref = "mockito" }
+snapshotTesting-plugin-jackson = { module = "io.github.origin-energy:java-snapshot-testing-plugin-jackson", version.ref = "snapshotTesting" }
+snapshotTesting-junit5 = { module = "io.github.origin-energy:java-snapshot-testing-junit5", version.ref = "snapshotTesting" }
+jackson-bom = { module = "com.fasterxml.jackson:jackson-bom", version.ref = "jackson" }
+jackson-annotations = { module = "com.fasterxml.jackson.core:jackson-annotations", version.ref = "jackson" }
+jackson-core = { module = "com.fasterxml.jackson.core:jackson-core", version.ref = "jackson" }
+jackson-databind = { module = "com.fasterxml.jackson.core:jackson-databind", version.ref = "jackson" }
+jackson-datatype-jdk8 = { module = "com.fasterxml.jackson.datatype:jackson-datatype-jdk8", version.ref = "jackson" }
+jackson-datatype-jsr310 = { module = "com.fasterxml.jackson.datatype:jackson-datatype-jsr310", version.ref = "jackson" }
+jsonassert = { module = "org.skyscreamer:jsonassert", version.ref = "jsonAssert" }
+lombok = { module = "org.projectlombok:lombok", version.ref = "lombok" }
+
+[bundles]
+jackson-full = ["jackson-bom", "jackson-annotations", "jackson-core", "jackson-databind", "jackson-datatype-jdk8", "jackson-datatype-jsr310"]
+test-common = ["mockito-core", "mockito-junit-jupiter", "assertj-core", "assertj-jsonUnit"]
+snapshotTesting = ["snapshotTesting-plugin-jackson", "snapshotTesting-junit5", "jsonassert"]
+
+[plugins]

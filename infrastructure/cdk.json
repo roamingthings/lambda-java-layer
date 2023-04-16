@@ -1,0 +1,21 @@
+{
+  "app": "../gradlew build run -x test --console=plain",
+  "watch": {
+    "include": [
+      "**"
+    ],
+    "exclude": [
+      "README.md",
+      "cdk*.json",
+      "build",
+      "build.gradle.kts",
+      "src/test"
+    ]
+  },
+  "context": {
+    "@aws-cdk/aws-apigateway:usagePlanKeyOrderInsensitiveId": false,
+    "@aws-cdk/aws-cloudfront:defaultSecurityPolicyTLSv1.2_2021": false,
+    "@aws-cdk/aws-rds:lowercaseDbIdentifier": false,
+    "@aws-cdk/core:stackRelativeExports": false
+  }
+}
