@@ -47,12 +47,7 @@ public class InfrastructureStack extends Stack {
                 .billingMode(BillingMode.PAY_PER_REQUEST)
                 .build());
 
-        LayerVersion java17layer = new LayerVersion(this, "Java17Layer", LayerVersionProps.builder()
-                .layerVersionName("Java17Layer")
-                .description("Java 17")
-                .compatibleRuntimes(Arrays.asList(Runtime.PROVIDED_AL2))
-                .code(Code.fromAsset("../../java17layer.zip"))
-                .build());
+        LayerVersion java17layer = importJavaRuntimeLayer();
 
         Function exampleWithLayer = new Function(this, "ExampleWithLayer", FunctionProps.builder()
                 .functionName("example-with-layer")
@@ -87,10 +82,15 @@ public class InfrastructureStack extends Stack {
                 .build());
     }
 
+    private LayerVersion importJavaRuntimeLayer() {
+        var javaRuntimeLayerArn = StringParameter.valueForStringParameter(this, "Java17RuntimeLayerArn");
+        return LayerVersion.fromLayerVersionArn(this, "import-JavaLayer", javaRuntimeLayerArn);
+    }
+
     private Map<String, String> mapOf(String... keyValues) {
-        Map<String, String> map = new HashMap<>(keyValues.length/2);
+        Map<String, String> map = new HashMap<>(keyValues.length / 2);
         for (int i = 0; i < keyValues.length; i++) {
-            if(i % 2 == 0) {
+            if (i % 2 == 0) {
                 map.put(keyValues[i], keyValues[i + 1]);
             }
         }
