@@ -57,7 +57,6 @@ To use the Java 19 runtime replace `Java17RuntimeLayerArn` with `Java19RuntimeLa
 
 ```Java
 var java17Layer=importJavaRuntimeLayer();
-
         Function.Builder.create(this,"Function")
         .runtime(Runtime.PROVIDED_AL2)
         .architecture(Architecture.X86_64)
